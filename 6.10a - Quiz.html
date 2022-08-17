@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Quiz App</title>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="question-body question-active">
+        <h3>CSS Quiz</h3>
+        <h4>Question <span class="question-number">1</span> of <span class="question-total"></span>:</h4>
+        <p>Which of the following is not a real eCommerce platform?</p>
+        <div class="question-group">
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q01" value="choice-1a">
+            <label for="choice-1a">Shopify</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q01" value="choice-1b">
+            <label for="choice-1b">WooCommerce</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q01" value="choice-1c">
+            <label for="choice-1c">ShopCommerce</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q01" value="choice-1d">
+            <label for="choice-1d">BigCommerce</label>
+          </div>
+        </div>
+      </div>
+      <div class="question-body">
+        <h3>CSS Quiz</h3>
+        <h4>Question <span class="question-number">2</span> of 3:</h4>
+        <p>If Shopify is so good, why are Shopify developers necessary?</p>
+        <div class="question-group">
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q02" value="choice-2a">
+            <label for="choice-2a">To save time on things like store setups and migrations</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q02" value="choice-2b">
+            <label for="choice-2b">To extend the limited design options and functionalities of themes with custom code</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q02" value="choice-2c">
+            <label for="choice-2c">To provide support with a deep understanding of how the platform works and what its limitations are</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q02" value="choice-2d">
+            <label for="choice-2d">All the above</label>
+          </div>
+        </div>
+      </div>
+      <div class="question-body">
+        <h3>CSS Quiz</h3>
+        <h4>Question <span class="question-number">3</span> of 3:</h4>
+        <p>Which of the following is true about Shopify developers?</p>
+        <div class="question-group">
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q03" value="choice-3a">
+            <label for="choice-3a">They are paid extremely well</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q03" value="choice-3b">
+            <label for="choice-3b">There is a high demand for them</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q03" value="choice-3c">
+            <label for="choice-3c">They need to know web development, the platform itself, and the liquid template language</label>
+          </div>
+          <div class="question-line">
+            <input type="radio" class='question-input' name="q03" value="choice-3d">
+            <label for="choice-3d">All the above</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="nav-button nav-back">< Back</div>
+      <div class="nav-button nav-next nav-active">Next ></div>
+      <div class="nav-indicator"></div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="quiz.js"></script>
+</html>
