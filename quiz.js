@@ -65,6 +65,10 @@ for(var navButton of navButtons) {
       //console.log(radioButtons);
       var counter = 0;
       var correctAnswers = 0;
+      var resultsArray = {};
+      var previousQuestion = "q01";
+      var currentQuestion = "q01";
+      var checkedFlag = false;
       for(radioButton of radioButtons) {
         if(radioButton.checked === true) {
           counter++;
@@ -79,7 +83,31 @@ for(var navButton of navButtons) {
             correctAnswers++;
           }
         }
+
+        //console.log(radioButton.name, radioButton.value, radioButton.checked);
+        currentQuestion = radioButton.name;
+        if(previousQuestion !== currentQuestion) {
+            console.log("Question Change Point");
+            if(checkedFlag === false) {
+                resultsArray[previousQuestion] = "";
+            }
+            checkedFlag = false;
+        }
+        previousQuestion = radioButton.name;
+
+        if(radioButton.checked === true) {
+            resultsArray[radioButton.name] = radioButton.value;
+            checkedFlag = true;
+        }
+
       }
+      console.log("Question Change Point");
+      if(checkedFlag === false) {
+          resultsArray[previousQuestion] = "";
+      }
+      checkedFlag = false;
+      
+      console.log(resultsArray);
       //console.log(`Correct Answers: ${correctAnswers} out of ${questionCount}`);
       document.querySelector('.nav-indicator').textContent = `Your Score: ${correctAnswers} out of ${questionCount}`;
     }
