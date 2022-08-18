@@ -4,7 +4,7 @@
 .container {
   width: 100%;
   max-width: 800px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   margin: 0 auto;
   text-align: center;
   font-family: Montserrat;
@@ -61,7 +61,7 @@ input[type='radio']:checked:before {
 
 .navigation {
   margin-top: 10px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   display: flex;
   flex-wrap: wrap;
 }
@@ -82,6 +82,7 @@ input[type='radio']:checked:before {
   background-color:#f1f1f1;
   margin-left: auto;
   text-align: center;
+  font-size: 0.8rem;
   padding: 10px 0px;
 }
 .question-body {

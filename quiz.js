@@ -7,62 +7,90 @@ var radioButtons = document.getElementsByClassName("question-input");
 
 questionDisplayTotal.textContent = questionCount;
 
-
 for(var navButton of navButtons) {
     navButton.addEventListener('click', function(event) {
     var direction = event.target.textContent.toLowerCase().replace(" ","").replace(">","").replace("<","");
 
         if(direction === "next") {
-        var questionDisplayNumber = document.querySelector('.question-active .question-number');
-        var nextQuestion = (Number(questionDisplayNumber.textContent) + 1);
-        var totalQuestions = (Number(questionDisplayTotal.textContent));
-        if(nextQuestion <= totalQuestions) {
-            for(var questionBody of questionBodies) {
-                if(questionBody.children["1"].firstElementChild.textContent === questionDisplayNumber.textContent) {
-                questionBody.classList.remove('question-active');
-                }
-                if(questionBody.children["1"].firstElementChild.textContent === String(nextQuestion)) {
-                questionBody.classList.add('question-active');
+            var questionDisplayNumber = document.querySelector('.question-active .question-number');
+            var nextQuestion = (Number(questionDisplayNumber.textContent) + 1);
+            var totalQuestions = (Number(questionDisplayTotal.textContent));
+
+            if(Number(questionDisplayNumber.textContent) < 10) {
+                questionNum = "q0" + questionDisplayNumber.textContent;
+            } else {
+                questionNum = "q" + questionDisplayNumber.textContent;
+            }
+
+            var questionChecked = false;
+            for(var radioButton of radioButtons) {
+                if(radioButton.name === questionNum) {
+                    if(radioButton.checked === true) {
+                        questionChecked = true;
+                    }
                 }
             }
-        }
-        if(nextQuestion === totalQuestions) {
-            document.querySelector(".nav-next").textContent = "*****";
-            document.querySelector(".nav-back").textContent = "< Back";
 
-        } else {
-            document.querySelector(".nav-next").textContent = "Next >"
-            document.querySelector(".nav-back").textContent = "< Back"
-        }
+            if(questionChecked === true) {
+                if(nextQuestion <= totalQuestions) {
+                    for(var questionBody of questionBodies) {
+                        if(questionBody.children["1"].firstElementChild.textContent === questionDisplayNumber.textContent) {
+                        questionBody.classList.remove('question-active');
+                        }
+                        if(questionBody.children["1"].firstElementChild.textContent === String(nextQuestion)) {
+                        questionBody.classList.add('question-active');
+                        }
+                    }
+                }
+                if(nextQuestion === totalQuestions) {
+                    document.querySelector(".nav-next").textContent = "*****";
+                    document.querySelector(".nav-back").textContent = "< Back";
+                    //document.querySelector(".nav-submit").textContent = "*****";
+
+                    document.querySelector('.nav-indicator').textContent = "Select One Answer then Press Submit to Reveal Score";
+    
+                } else {
+                    document.querySelector(".nav-next").textContent = "Next >";
+                    document.querySelector(".nav-back").textContent = "< Back";
+                    //document.querySelector(".nav-submit").textContent = "*****";
+                }
+            } else {
+                document.querySelector('.nav-indicator').textContent = `Please Select One Answer to Proceed to Next Question`;
+            }
         } 
         else if (direction === "back") {
-        var questionDisplayNumber = document.querySelector('.question-active .question-number');
-        var nextQuestion = (Number(questionDisplayNumber.textContent) - 1);
-        if(nextQuestion !== 0){
-            for(var questionBody of questionBodies) {
-            if(questionBody.children["1"].firstElementChild.textContent === questionDisplayNumber.textContent) {
-                questionBody.classList.remove('question-active');
+            var questionDisplayNumber = document.querySelector('.question-active .question-number');
+            var nextQuestion = (Number(questionDisplayNumber.textContent) - 1);
+
+            if(Number(questionDisplayNumber.textContent) < 10) {
+                questionNum = "q0" + questionDisplayNumber.textContent;
+            } else {
+                questionNum = "q" + questionDisplayNumber.textContent;
             }
-            if(questionBody.children["1"].firstElementChild.textContent === String(nextQuestion)) {
-                questionBody.classList.add('question-active');
+
+            if(nextQuestion !== 0){
+                for(var questionBody of questionBodies) {
+                if(questionBody.children["1"].firstElementChild.textContent === questionDisplayNumber.textContent) {
+                    questionBody.classList.remove('question-active');
+                }
+                if(questionBody.children["1"].firstElementChild.textContent === String(nextQuestion)) {
+                    questionBody.classList.add('question-active');
+                }
+                }
+                if(nextQuestion !== questionDisplayTotal.textContent) {
+                document.querySelector(".nav-next").textContent = "Next >";
+                } 
             }
+            if(nextQuestion === 1) {
+                document.querySelector(".nav-next").textContent = "Next >"
+                document.querySelector(".nav-back").textContent = "*****"
+            } else {
+                document.querySelector(".nav-next").textContent = "Next >";
+                document.querySelector(".nav-back").textContent = "< Back";
+                //document.querySelector(".nav-submit").textContent = "*****";
             }
-            if(nextQuestion !== questionDisplayTotal.textContent) {
-            document.querySelector(".nav-next").textContent = "Next >";
-            } 
-        }
-        if(nextQuestion === 1) {
-            document.querySelector(".nav-next").textContent = "Next >"
-            document.querySelector(".nav-back").textContent = "*****"
-        } else {
-            document.querySelector(".nav-next").textContent = "Next >"
-            document.querySelector(".nav-back").textContent = "< Back"
-        }
-        
         } 
         else if (direction === "submit") {
-
-
             //Array check for correct answer variables 
             var correctObjectAnswers = 0 
             var resultsObject = {};
@@ -103,8 +131,17 @@ for(var navButton of navButtons) {
                     correctObjectAnswers++;
                 }
             }
-            document.querySelector('.nav-indicator').textContent = `Your Score: ${correctObjectAnswers} out of ${questionCount}`;
+            document.querySelector('.nav-indicator').textContent = `Your Score is ${correctObjectAnswers} out of ${questionCount}`;
         }               
+    })
+}
+
+for(var radioButton of radioButtons) {
+    radioButton.addEventListener('click', function(event) {
+        var questionDisplayNumber = document.querySelector('.question-active .question-number');
+        if(questionDisplayNumber.textContent === questionDisplayTotal.textContent) {
+            document.querySelector(".nav-submit").textContent = "Submit";
+        }
     })
 }
     
